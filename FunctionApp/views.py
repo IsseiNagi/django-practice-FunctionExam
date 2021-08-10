@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from . import forms
 from django.core.exceptions import ValidationError
+from .models import UserActivateTokens
 
 # Create your views here.
 
@@ -24,3 +25,12 @@ def regist(request):
             'regist_form': regist_form
         }
     )
+
+
+# トークン付きのURLから遷移したページで、実行する関数を定義する
+def activate_user(request, token):
+
+    # UserActivateTokensで指定したmanagerを呼び出すので、.objectsにする
+    user_activate_token = UserActivateTokens.objects.activate_user_by_token(
+        token)
+    return render(request, 'functionapp/activate_user.html')
