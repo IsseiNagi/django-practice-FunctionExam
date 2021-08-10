@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+    <div>{{ message.message }}</div>
+    {% endfor %}
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data" action="">
+{% csrf_token %}
+<table>
+    {{ user_edit_form.as_table }}
+</table>
+<input type="submit" value="更新">
+</form>
+<a href="{% url 'functionapp:change_password' %}">パスワードの変更はこちらから</a>
+{% endblock %}
