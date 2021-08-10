@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block content %}
 
 {% if messages %}
@@ -8,5 +7,11 @@
     {% endfor %}
 {% endif %}
 
-こちらはホーム画面です
+<form method="POST" action="">
+{% csrf_token %}
+<table>
+    {{ login_form.as_table }}
+</table>
+<input type="submit" value="ログイン">
+</form>
 {% endblock %}

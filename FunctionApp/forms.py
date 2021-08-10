@@ -21,11 +21,15 @@ class RegistForm(forms.ModelForm):
         confirm_password = cleaned_data['confirm_password']
         if password != confirm_password:
             raise forms.ValidationError('入力したパスワードが一致しません')
-    
+
     def save(self, commit=False):
         user = super().save(commit=False)
         validate_password(self.cleaned_data['password'], user)
         user.set_password(self.cleaned_data['password'])
         user.save()
         return user
-    
+
+
+class LoginForm(forms.Form):
+    email = forms.CharField(label='メールアドレス')
+    password = forms.CharField(label='パスワード', widget=forms.PasswordInput())
