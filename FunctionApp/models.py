@@ -25,13 +25,14 @@ class Users(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    REQUIRED_FIELDS = ['username', ]
 
     def __str__(self):
-        return self.email
+        return self.email 
 
     class Meta:
         db_table = 'users'
+        verbose_name = verbose_name_plural = 'ユーザー'
 
 
 class UserActivateTokensManager(models.Manager):
