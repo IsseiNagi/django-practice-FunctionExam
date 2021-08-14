@@ -3,8 +3,8 @@
 
 {% if messages %}
     {% for message in messages %}
-    <div>{{ message.message }}</div>
-    {% endfor %}
+<div>{{ message.message }}</div>
+{% endfor %}
 {% endif %}
 <h3>掲示板一覧画面</h3>
 <p>
@@ -23,7 +23,15 @@
         <tr>
             <td>{{ forloop.counter }}</td>
             <td>{{ theme.title }}</td>
-            <td>{{ theme.user }}</td>
+            {% if theme.user.id == user.id %}
+                <!--テーマのユーザーidがログインユーザーのidと同じだった場合-->
+                <td>
+                    <!--idを引数に取ってedit_themeに遷移-->
+                    <a href="{% url 'boards:edit_theme' id=theme.id %}">{{ theme.user }}</a>
+                </td>
+            {% else %}
+                <td>{{ theme.user }}</td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>
