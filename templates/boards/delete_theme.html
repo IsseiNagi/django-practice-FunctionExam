@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>掲示板削除画面</h3>
+<form method="POST" action="">
+    {% csrf_token %}
+    <table>
+        {{ delete_theme_form.as_table }}
+    </table>
+    <br>
+    <input type="submit" value="掲示板を削除する">
+</form>
+{% endblock %}

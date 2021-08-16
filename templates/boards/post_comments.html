@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>{{ theme.title }}</h3>
+
+<!--テーマに紐づいたコメントを全て表示-->
+{% for comment in comments %}
+<div class="col_1 offset-1">
+    {% if comment.user.picture %}
+    <img width="50px" height="50px" src="{{ coment.user.picture.url }}" alt="">
+    {% endif %}
+</div>
+<div class="col-8 offset-2">
+    <p>名前：{{ comment.user.username }}</p>
+    <p>{{ comment.comment | linebreaks }}</p>  <!--linebreaks：改行を適用する-->
+</div>
+<div class="col-10 offset-1">
+    <hr>
+</div>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<div class="col-4 offset-7">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <table>
+            {{ post_comment_form.as_table }}
+        </table>
+        <br>
+        <input type="submit" value="コメント送信">
+    </form>
+</div>
+{% endif %}
+
+{% endblock %}
