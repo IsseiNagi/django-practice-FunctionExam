@@ -22,7 +22,7 @@
         {% for theme in themes %}
         <tr>
             <td>{{ forloop.counter }}</td>
-            <td>{{ theme.title }}</td>
+            <td><a href="{% url 'boards:post_comments' theme_id=theme.id %}">{{ theme.title }}</a></td>
             {% if theme.user.id == user.id %}
                 <!--テーマのユーザーidがログインユーザーのidと同じだった場合-->
                 <td>
