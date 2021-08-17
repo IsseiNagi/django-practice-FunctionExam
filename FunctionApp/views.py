@@ -101,3 +101,9 @@ def change_password(request):
         'functionapp/change_password.html',
         context={'password_change_form': password_change_form},
     )
+
+
+def show_error_page(request, exception):
+    return render(
+        request, '404.html'
+    )
